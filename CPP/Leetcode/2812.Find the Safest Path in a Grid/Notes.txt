@@ -1,0 +1,19 @@
+
+// ===== LEETCODE PATTERNS =====
+// Add one entry per daily, review every Sunday.
+// Format: DATE | PATTERN | WHEN_TO_USE | SNIPPET
+
+// 2026-07-01 | Multi-source BFS + Binary Search
+// WHEN: Grid problem asking for max/min "bottleneck" value along a path
+// SNIPPET:
+//   queue all thieves, BFS for dist[][]
+//   binary search on answer
+//   isSafe(): BFS/DFS only using cells with dist >= mid
+// PROBS: 2812
+//
+// NOTES:
+// - Multi-source BFS (all thieves as sources) gives each cell's min dist to thief
+// - Binary search on safeness factor [0, maxDist]
+// - isSafe() uses a simple BFS — no need for Dijkstra here
+// - Edge case: if (0,0) or (n-1,n-1) has dist < safeness, fail immediately
+// - TC: O(n^2 * log(maxDist)), SC: O(n^2)
