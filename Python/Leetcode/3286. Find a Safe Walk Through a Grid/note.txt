@@ -1,0 +1,33 @@
+PYTHON NOTES - 2D ARRAY INITIALIZATION
+
+Standard Way:
+visited = [[0] * m for _ in range(n)]
+
+What it does:
+Creates an n x m matrix filled with 0
+
+Example:
+[
+ [0,0,0],
+ [0,0,0]
+]
+
+Step 1:
+[0] * m  -> creates one row
+
+Step 2:
+for _ in range(n) -> repeats row n times
+
+IMPORTANT:
+for _ means loop variable is unused
+
+WRONG WAY:
+visited = [[0] * m] * n
+Problem:
+- All rows share same memory
+- Changing one row changes all
+
+SAFE WAY:
+visited = []
+for i in range(n):
+    visited.append([0] * m)

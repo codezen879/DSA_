@@ -1,0 +1,58 @@
+# Dijkstra Notes (Based on Your Code)
+
+* **Use a Min Heap**
+
+  ```cpp
+  priority_queue<..., greater<...>> pq;
+  ```
+
+  Always process the minimum-cost path first.
+
+* **Use `dist[][]` instead of `visited[][]`**
+
+  * `visited` works for BFS.
+  * Dijkstra may find a **better path later**, so store the minimum cost:
+
+    ```cpp
+    dist[i][j] = minimum cost to reach (i,j);
+    ```
+
+* **Relax the edge**
+
+  ```cpp
+  if(newCost < dist[i][j])
+  {
+      dist[i][j] = newCost;
+      pq.push(...);
+  }
+  ```
+
+* **Skip outdated states**
+
+  ```cpp
+  if(cost > dist[x][y]) continue;
+  ```
+
+  The same cell can appear multiple times in the priority queue.
+
+* **Prefer direction arrays**
+
+  ```cpp
+  int dr[4]={-1,1,0,0};
+  int dc[4]={0,0,-1,1};
+  ```
+
+  instead of `abs(dx)!=abs(dy)`.
+
+* **Avoid variable shadowing**
+
+  ```cpp
+  int currCost = pq.top().first;
+  ```
+
+  instead of redeclaring `cost`.
+
+### Golden Rule
+
+* **BFS → Queue + `visited`**
+* **Dijkstra → Min Heap + `dist` + Relaxation**

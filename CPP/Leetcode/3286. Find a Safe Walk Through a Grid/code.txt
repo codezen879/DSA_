@@ -1,0 +1,38 @@
+class Solution {
+public:
+    bool findSafeWalk(vector<vector<int>>& grid, int health) {
+        int cost = grid[0][0];
+        int n=grid.size(),m=grid[0].size();
+        vector<vector<int>>visited(n,vector<int>(m,0));
+      priority_queue<
+    pair<int,pair<int,int>>,
+    vector<pair<int,pair<int,int>>>,
+    greater<pair<int,pair<int,int>>>
+> q;
+        q.push({cost,{0,0}});
+        visited[0][0]=1;
+        while(!q.empty())
+        {
+            int cost=q.top().first,x=q.top().second.first,y=q.top().second.second;
+            if(x==n-1&&y==m-1&&health-cost>=1)return true;
+            q.pop();
+            for(int dx=-1;dx<=1;dx++)
+            {
+                for(int dy=-1;dy<=1;dy++)
+                {
+                    int i=x+dx,j=y+dy;
+                    if(abs(dx)!=abs(dy)&&i>=0&&i<n&&j>=0&&j<m&&visited[i][j]==0)
+                    {
+                        int tc = cost+grid[i][j];
+                        if(health-tc>=1)
+                        {
+                            visited[i][j]=1;
+                            q.push({tc,{i,j}});
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+};

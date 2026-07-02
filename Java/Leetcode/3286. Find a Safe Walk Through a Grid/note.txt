@@ -1,0 +1,43 @@
+
+
+JAVA NOTES - 2D ARRAY INITIALIZATION
+
+Standard Way:
+int[][] visited = new int[n][m];
+
+What it does:
+Creates n x m matrix filled with 0 automatically
+
+Reason:
+Default value of int in Java is 0
+
+Example:
+[
+ [0,0,0],
+ [0,0,0]
+]
+
+KEY DIFFERENCE:
+
+Python:
+- Manual initialization needed
+- Risk of shared row bug
+
+Java:
+- Auto-initialized
+- No shared row issue
+
+EQUIVALENTS:
+
+Python:
+[[0] * m for _ in range(n)]
+
+Java:
+int[][] visited = new int[n][m];
+
+C++:
+vector<vector<int>> visited(n, vector<int>(m, 0));
+
+MEMORY TRICK:
+Python -> build manually
+Java   -> ready-made array
