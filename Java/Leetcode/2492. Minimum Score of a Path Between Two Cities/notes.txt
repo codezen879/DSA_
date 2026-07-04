@@ -1,0 +1,137 @@
+LeetCode 2492: Minimum Score of a Path Between Two Cities
+
+### Problem Statement
+
+You are given:
+
+* `n` cities numbered from `1` to `n`
+
+* An undirected weighted graph (`roads`)
+
+* At least one path exists from city `1` to city `n`
+
+The score of a path is:
+
+The minimum edge weight present on that path.
+
+Return the minimum possible score of any path from city `1` to city `n`.
+
+### Key Observation ⭐
+
+The graph is undirected, and the problem allows:
+
+* Revisiting cities.
+
+* Revisiting roads.
+
+This is the most important clue.
+
+Because revisiting is allowed, you can freely travel anywhere inside the connected component containing city `1`.
+
+Therefore:
+
+The answer is simply the minimum edge weight among all edges in the connected component containing city 1.
+
+You do not need Dijkstra or shortest path algorithms.
+
+### Why?
+
+Example graph:
+
+A direct path:
+
+Score:
+
+But revisiting is allowed.
+
+We can travel:
+
+Edges used:
+
+Score:
+
+Hence the answer is 2, the smallest edge in the connected component.
+
+### Algorithm
+
+* Build an adjacency list.
+
+* Perform BFS/DFS starting from city `1`.
+
+* For every edge encountered, update the answer: `ans = min(ans, weight)`
+
+* Visit each city only once.
+
+* Return `ans`.
+
+### BFS Steps
+
+### Correct Python Code
+
+### Why Update Every Edge?
+
+Suppose:
+
+Even if node `2` has already been visited, the edge `(1,2)` must still be considered.
+
+Therefore:
+
+must be outside the visited check.
+
+Correct:
+
+### Common Mistake
+
+Wrong:
+
+Reason:
+
+* A visited node may get pushed into the queue again.
+
+* This breaks the standard BFS invariant.
+
+* Although it may pass this problem, it performs unnecessary work and is not considered clean BFS.
+
+Always separate:
+
+* Edge processing
+
+* Node traversal
+
+### Complexity
+
+Building graph:
+
+BFS/DFS:
+
+Overall:
+
+where:
+
+* `V` = number of cities
+
+* `E` = number of roads
+
+### Interview Takeaway
+
+When you see:
+
+* Undirected graph
+
+* Revisiting nodes/edges is allowed
+
+* Need the minimum/maximum value over a path
+
+Don't immediately think of shortest-path algorithms.
+
+Instead ask:
+
+Can I freely explore the entire connected component?
+
+If yes, the answer is often obtained by computing a property (minimum, maximum, count, etc.) over the entire connected component using a simple BFS or DFS.
+
+### One-Line Summary
+
+Minimum Score = Minimum edge weight in the connected component containing city 1.
+
+This is the core insight that solves LeetCode 2492 in O(V + E) time.
