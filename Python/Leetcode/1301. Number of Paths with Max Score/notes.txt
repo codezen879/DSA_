@@ -1,0 +1,8 @@
+Key Idea (remember this)
+score[i][j] = best score from cell → S
+ways[i][j] = number of such best paths
+DP fills bottom-right → top-left
+At each cell:
+take max of 3 directions
+sum ways of max-only paths
+add current cell value
