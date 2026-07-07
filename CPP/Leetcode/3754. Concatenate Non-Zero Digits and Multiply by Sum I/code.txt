@@ -1,0 +1,19 @@
+class Solution {
+public:
+    long long sumAndMultiply(int n) {
+        long long x=0,sum=0,c=1;
+        while(n)
+        {
+            long long  t = n%10;
+           // cout<<t<<endl;
+           if(t){
+            x= x + t*c;
+            
+            c*=10;
+            sum+=t;}
+            n/=10;
+        }
+      //  cout<<sum<<" "<<x<<endl;
+        return x*sum;
+    }
+};
